@@ -1,0 +1,16 @@
+{
+  "name": "azure-payslip-portal-frontend",
+  "version": "1.0.0",
+  "description": "Frontend for Azure Salary Portal",
+  "scripts": {
+    "start": "http-server . -p 4200 -o",
+    "build": "node build.js",
+    "dev": "http-server . -p 4200"
+  },
+  "dependencies": {
+    "http-server": "^14.1.1"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
