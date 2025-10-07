@@ -34,21 +34,6 @@ jobs:
           cd frontend
           npm install
 
-      - name: Build frontend
-        run: |
-          cd frontend
-          npm run build
-
-      - name: Restore backend dependencies
-        run: |
-          cd backend
-          dotnet restore
-
-      - name: Build backend
-        run: |
-          cd backend
-          dotnet build --no-restore
-
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
@@ -58,7 +43,7 @@ jobs:
           action: "upload"
           app_location: "frontend"
           api_location: "backend"
-          output_location: "dist/payslip-portal"
+          output_location: ""
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
