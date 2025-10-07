@@ -1,0 +1,29 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "azure-salary-portal", "azure-salary-portal", "{1B6F5AB6-FECF-5453-1F71-4E99F1E352F3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayslipPortal.Functions", "azure-salary-portal\backend\PayslipPortal.Functions.csproj", "{F5B3182A-4EB1-8455-882A-CE424CE21007}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F5B3182A-4EB1-8455-882A-CE424CE21007}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5B3182A-4EB1-8455-882A-CE424CE21007}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5B3182A-4EB1-8455-882A-CE424CE21007}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5B3182A-4EB1-8455-882A-CE424CE21007}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F5B3182A-4EB1-8455-882A-CE424CE21007} = {1B6F5AB6-FECF-5453-1F71-4E99F1E352F3}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8DFFBA14-B112-45F9-A3E2-FE1E38D77220}
+	EndGlobalSection
+EndGlobal
