@@ -1,0 +1,7 @@
+{
+  "scripts": {
+    "start": "ng serve",
+    "build": "ng build",
+    "serve-simple": "npx http-server dist -p 4200 -o"
+  }
+}

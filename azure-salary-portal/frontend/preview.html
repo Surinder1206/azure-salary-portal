@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payslip Portal - Preview</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@angular/material@17/prebuilt-themes/indigo-pink.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Roboto, "Helvetica Neue", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        
+        .toolbar {
+            background-color: #3f51b5;
+            color: white;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .toolbar h1 {
+            margin: 0;
+            flex: 1;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+        
+        .dashboard-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-top: 24px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        
+        .card-header .material-icons {
+            margin-right: 12px;
+            color: #3f51b5;
+            font-size: 32px;
+        }
+        
+        .card-title {
+            font-size: 20px;
+            font-weight: 500;
+            margin: 0;
+        }
+        
+        .card-content {
+            color: #666;
+            margin-bottom: 24px;
+            line-height: 1.5;
+        }
+        
+        .btn {
+            background-color: #3f51b5;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: #303f9f;
+        }
+        
+        .btn-accent {
+            background-color: #ff4081;
+        }
+        
+        .btn-accent:hover {
+            background-color: #e91e63;
+        }
+        
+        .navigation {
+            background: white;
+            padding: 16px 0;
+            margin-bottom: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .nav-links {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 32px;
+            padding: 0 24px;
+        }
+        
+        .nav-link {
+            color: #666;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .nav-link:hover {
+            background-color: #f5f5f5;
+            color: #3f51b5;
+        }
+        
+        .nav-link.active {
+            background-color: #3f51b5;
+            color: white;
+        }
+        
+        .table-container {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .table th,
+        .table td {
+            padding: 16px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .table th {
+            background-color: #f5f5f5;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .table td {
+            color: #666;
+        }
+        
+        .table tr:hover {
+            background-color: #f9f9f9;
+        }
+        
+        .icon-button {
+            background: none;
+            border: none;
+            padding: 8px;
+            border-radius: 50%;
+            cursor: pointer;
+            color: #3f51b5;
+            transition: background-color 0.3s ease;
+        }
+        
+        .icon-button:hover {
+            background-color: #e8eaf6;
+        }
+    </style>
+</head>
+<body>
+    <!-- Toolbar -->
+    <div class="toolbar">
+        <h1>Payslip Portal</h1>
+        <div class="user-info">
+            <span>Developer (Local)</span>
+            <button class="icon-button">
+                <i class="material-icons">account_circle</i>
+            </button>
+        </div>
+    </div>
+    
+    <!-- Navigation -->
+    <div class="navigation">
+        <div class="nav-links">
+            <a href="#dashboard" class="nav-link active">
+                <i class="material-icons">dashboard</i>
+                Dashboard
+            </a>
+            <a href="#payslips" class="nav-link">
+                <i class="material-icons">receipt</i>
+                Payslips
+            </a>
+            <a href="#documents" class="nav-link">
+                <i class="material-icons">description</i>
+                Documents
+            </a>
+            <a href="#admin" class="nav-link">
+                <i class="material-icons">settings</i>
+                Admin
+            </a>
+        </div>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Dashboard Section -->
+        <div id="dashboard-section">
+            <h2>Welcome to Payslip Portal</h2>
+            
+            <div class="dashboard-cards">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="material-icons">receipt</i>
+                        <h3 class="card-title">Recent Payslips</h3>
+                    </div>
+                    <div class="card-content">
+                        View your latest salary slips and payment history.
+                    </div>
+                    <button class="btn" onclick="showPayslips()">View Payslips</button>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <i class="material-icons">description</i>
+                        <h3 class="card-title">HR Documents</h3>
+                    </div>
+                    <div class="card-content">
+                        Access P60s, P45s, and other important documents.
+                    </div>
+                    <button class="btn" onclick="showDocuments()">View Documents</button>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <i class="material-icons">settings</i>
+                        <h3 class="card-title">Administration</h3>
+                    </div>
+                    <div class="card-content">
+                        Manage employees, upload payslips, and configure settings.
+                    </div>
+                    <button class="btn btn-accent" onclick="showAdmin()">Admin Panel</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Payslips Section -->
+        <div id="payslips-section" style="display: none;">
+            <h2>My Payslips</h2>
+            
+            <div class="table-container">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Tax Year</th>
+                            <th>Period</th>
+                            <th>Gross Pay</th>
+                            <th>Net Pay</th>
+                            <th>Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2024-25</td>
+                            <td>March 2025</td>
+                            <td>£3,000.00</td>
+                            <td>£2,400.00</td>
+                            <td>31/03/2025</td>
+                            <td>
+                                <button class="icon-button" onclick="downloadFile('payslip-1')">
+                                    <i class="material-icons">download</i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2024-25</td>
+                            <td>February 2025</td>
+                            <td>£3,000.00</td>
+                            <td>£2,400.00</td>
+                            <td>28/02/2025</td>
+                            <td>
+                                <button class="icon-button" onclick="downloadFile('payslip-2')">
+                                    <i class="material-icons">download</i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2024-25</td>
+                            <td>January 2025</td>
+                            <td>£3,000.00</td>
+                            <td>£2,400.00</td>
+                            <td>31/01/2025</td>
+                            <td>
+                                <button class="icon-button" onclick="downloadFile('payslip-3')">
+                                    <i class="material-icons">download</i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Documents Section -->
+        <div id="documents-section" style="display: none;">
+            <h2>HR Documents</h2>
+            
+            <div class="table-container">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Document Name</th>
+                            <th>Type</th>
+                            <th>Date</th>
+                            <th>Size</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>P60 2024-25</td>
+                            <td>P60</td>
+                            <td>05/04/2025</td>
+                            <td>245 KB</td>
+                            <td>
+                                <button class="icon-button" onclick="downloadFile('p60-2024')">
+                                    <i class="material-icons">download</i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>P45 2024</td>
+                            <td>P45</td>
+                            <td>15/12/2024</td>
+                            <td>180 KB</td>
+                            <td>
+                                <button class="icon-button" onclick="downloadFile('p45-2024')">
+                                    <i class="material-icons">download</i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Admin Section -->
+        <div id="admin-section" style="display: none;">
+            <h2>Administration Panel</h2>
+            
+            <div class="dashboard-cards">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="material-icons">upload_file</i>
+                        <h3 class="card-title">Upload Payslips</h3>
+                    </div>
+                    <div class="card-content">
+                        Upload CSV file with employee data and corresponding PDF payslips.
+                    </div>
+                    <button class="btn" onclick="alert('Upload functionality would be implemented here')">
+                        Select Files
+                    </button>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <i class="material-icons">settings</i>
+                        <h3 class="card-title">Tax Configuration</h3>
+                    </div>
+                    <div class="card-content">
+                        Configure tax rates and thresholds for the current tax year.
+                    </div>
+                    <button class="btn" onclick="alert('Tax configuration would open here')">
+                        Configure
+                    </button>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <i class="material-icons">people</i>
+                        <h3 class="card-title">Employee Management</h3>
+                    </div>
+                    <div class="card-content">
+                        Manage employee access and roles.
+                    </div>
+                    <button class="btn" onclick="alert('Employee management would be here')">
+                        Manage Users
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Simple navigation logic
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('[id$="-section"]').forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            // Remove active class from all nav links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).style.display = 'block';
+            
+            // Add active class to corresponding nav link
+            document.querySelector(`a[href="#${sectionId.replace('-section', '')}"]`).classList.add('active');
+        }
+        
+        function showPayslips() {
+            showSection('payslips-section');
+        }
+        
+        function showDocuments() {
+            showSection('documents-section');
+        }
+        
+        function showAdmin() {
+            showSection('admin-section');
+        }
+        
+        function downloadFile(fileId) {
+            alert(`Would download file: ${fileId}\nIn the real app, this would generate a SAS token and download the PDF.`);
+        }
+        
+        // Add click handlers to navigation links
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const href = this.getAttribute('href');
+                    const sectionId = href.substring(1) + '-section';
+                    showSection(sectionId);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
