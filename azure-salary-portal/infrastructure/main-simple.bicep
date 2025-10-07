@@ -1,16 +1,16 @@
 @description('The location for all resources')
 param location string = resourceGroup().location
 
-@description('The base name for all resources')
-param baseName string = 'payslip${uniqueString(resourceGroup().id)}'
-
 @description('The environment (dev, staging, prod)')
 @allowed(['dev', 'staging', 'prod'])
 param environment string = 'dev'
 
+// Generate unique suffix for resource names
+var uniqueSuffix = take(uniqueString(resourceGroup().id), 8)
+
 // Storage Account
 resource storageAccount 'Microsoft.Storage/storageAccounts@2023-01-01' = {
-  name: 'stpayslip${take(uniqueString(resourceGroup().id), 8)}${environment}'
+  name: 'stpayslip${uniqueSuffix}${environment}'
   location: location
   sku: {
     name: 'Standard_LRS'
@@ -41,7 +41,7 @@ resource documentsContainer 'Microsoft.Storage/storageAccounts/blobServices/cont
 
 // Static Web App
 resource staticWebApp 'Microsoft.Web/staticSites@2023-01-01' = {
-  name: 'swa-${baseName}-${environment}'
+  name: 'swa-payslip-${uniqueSuffix}-${environment}'
   location: location
   sku: {
     name: 'Free'
@@ -54,18 +54,6 @@ resource staticWebApp 'Microsoft.Web/staticSites@2023-01-01' = {
       apiLocation: '/backend'
       outputLocation: 'dist/payslip-portal'
     }
-  }
-}
-
-// Application Settings for Static Web App
-resource staticWebAppSettings 'Microsoft.Web/staticSites/config@2023-01-01' = {
-  name: 'appsettings'
-  parent: staticWebApp
-  properties: {
-    AzureWebJobsStorage: 'DefaultEndpointsProtocol=https;AccountName=${storageAccount.name};AccountKey=${storageAccount.listKeys().keys[0].value};EndpointSuffix=core.windows.net'
-    StorageConnectionString: 'DefaultEndpointsProtocol=https;AccountName=${storageAccount.name};AccountKey=${storageAccount.listKeys().keys[0].value};EndpointSuffix=core.windows.net'
-    StorageBlobContainerName: 'payslips'
-    FUNCTIONS_WORKER_RUNTIME: 'dotnet-isolated'
   }
 }
 

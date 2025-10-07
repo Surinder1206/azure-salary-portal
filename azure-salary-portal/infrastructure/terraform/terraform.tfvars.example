@@ -1,0 +1,10 @@
+# Example terraform.tfvars file
+# Copy this file to terraform.tfvars and customize the values
+
+environment = "dev"
+location = "uksouth"
+project_name = "payslip-portal"
+
+# Optional: Set if you want to connect to GitHub repository
+# github_repo_url = "https://github.com/yourusername/azure-salary-portal"
+# github_branch = "main"
