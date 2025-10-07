@@ -23,7 +23,7 @@
   ],
   "responseOverrides": {
     "401": {
-      "redirect": "/.auth/login/aad",
+      "redirect": "/.auth/login/microsoft",
       "statusCode": 302
     }
   },
@@ -32,15 +32,9 @@
     "exclude": ["/images/*.{png,jpg,gif}", "/css/*", "/api/*"]
   },
   "auth": {
+    "rolesSource": "/api/GetUserRoles",
     "identityProviders": {
-      "azureActiveDirectory": {
-        "userDetailsClaim": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name",
-        "registration": {
-          "openIdIssuer": "https://login.microsoftonline.com/common/v2.0",
-          "clientIdSettingName": "AAD_CLIENT_ID",
-          "clientSecretSettingName": "AAD_CLIENT_SECRET"
-        }
-      }
+      "customOpenIdConnectProviders": {}
     }
   },
   "globalHeaders": {
