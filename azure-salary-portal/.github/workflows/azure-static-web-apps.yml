@@ -15,9 +15,10 @@ jobs:
     runs-on: ubuntu-latest
     name: Build and Deploy Job
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           submodules: true
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
@@ -34,6 +35,13 @@ jobs:
           cd frontend
           npm install
 
+      - name: Verify files exist
+        run: |
+          echo "Repository structure:"
+          ls -la
+          echo "Checking for index.html:"
+          ls -la index.html || echo "index.html not found"
+
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
@@ -45,6 +53,7 @@ jobs:
           api_location: "backend"
           output_location: ""
           skip_app_build: true
+          skip_api_build: false
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
