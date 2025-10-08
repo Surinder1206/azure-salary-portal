@@ -1,1 +1,41 @@
-{"routes":[{"route":"/api/*","allowedRoles":["authenticated"]},{"route":"/payslips/*","allowedRoles":["authenticated"]},{"route":"/documents/*","allowedRoles":["authenticated"]},{"route":"/admin/*","allowedRoles":["admin"]},{"route":"/*","rewrite":"/index.html"}],"responseOverrides":{"401":{"redirect":"/.auth/login/microsoft","statusCode":302}},"navigationFallback":{"rewrite":"/index.html","exclude":["/images/*.{png,jpg,gif}","/css/*","/api/*"]},"auth":{"rolesSource":"/api/GetUserRoles","identityProviders":{"azureActiveDirectory":{"registration":{"openIdIssuer":"https://login.microsoftonline.com/0f5d282c-f167-4e5a-898c-2f18a1435bd5","clientIdSettingName":"AZURE_CLIENT_ID","clientSecretSettingName":"AZURE_CLIENT_SECRET_APP_SETTING_NAME"}}}},"globalHeaders":{"X-Content-Type-Options":"nosniff","X-Frame-Options":"DENY","Content-Security-Policy":"default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' https:; connect-src 'self' https:"}}
+{
+  "routes": [
+    {
+      "route": "/api/health",
+      "allowedRoles": ["anonymous"]
+    },
+    {
+      "route": "/api/version", 
+      "allowedRoles": ["anonymous"]
+    },
+    {
+      "route": "/api/payslips/*",
+      "allowedRoles": ["authenticated"]
+    },
+    {
+      "route": "/api/documents/*", 
+      "allowedRoles": ["authenticated"]
+    },
+    {
+      "route": "/api/admin/*",
+      "allowedRoles": ["admin"]
+    },
+    {
+      "route": "/api/*",
+      "allowedRoles": ["authenticated"]
+    },
+    {
+      "route": "/*",
+      "rewrite": "/index.html"
+    }
+  ],
+  "navigationFallback": {
+    "rewrite": "/index.html",
+    "exclude": ["/images/*.{png,jpg,gif}", "/css/*", "/api/*"]
+  },
+  "globalHeaders": {
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "DENY", 
+    "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' https:; connect-src 'self' https:"
+  }
+}
