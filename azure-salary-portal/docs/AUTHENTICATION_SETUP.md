@@ -1,9 +1,9 @@
 # Azure Salary Portal - Authentication Setup Guide
 
 ## Current Status
-✅ **Infrastructure Deployed**: All Azure resources are live  
-✅ **Basic Deployment**: Application is accessible at https://ashy-ocean-01ba99f03.1.azurestaticapps.net  
-🔄 **Next Step**: Configure Entra ID authentication  
+✅ **Infrastructure Deployed**: All Azure resources are live
+✅ **Basic Deployment**: Application is accessible at https://ashy-ocean-01ba99f03.1.azurestaticapps.net
+🔄 **Next Step**: Configure Entra ID authentication
 
 ## Step 1: Create App Registration in Azure Portal
 
@@ -13,7 +13,7 @@
    ```
    Name: Azure Salary Portal
    Supported account types: Accounts in any organizational directory and personal Microsoft accounts
-   Redirect URI: 
+   Redirect URI:
      - Platform: Web
      - URI: https://ashy-ocean-01ba99f03.1.azurestaticapps.net/.auth/login/aad/callback
    ```
@@ -23,8 +23,8 @@
 
 ### A. Copy Important Values
 After registration, **copy and save** these values:
-- **Application (client) ID**: `[Copy this from Overview page]`
-- **Directory (tenant) ID**: `[Copy this from Overview page]`
+- **Application (client) ID**: `2856cc32-b786-431b-8d1b-14940d08b2c6`
+- **Directory (tenant) ID**: `0f5d282c-f167-4e5a-898c-2f18a1435bd5`
 
 ### B. Configure Authentication
 1. Go to **Authentication** tab
@@ -87,10 +87,10 @@ Once authentication is working, we'll deploy the .NET Azure Functions for:
 
 ## Security Features Enabled
 
-✅ **Route Protection**: API routes require authentication  
-✅ **Automatic Redirect**: Unauthenticated users redirect to login  
-✅ **Multi-tenant Support**: Works with any Microsoft account  
-✅ **Secure Headers**: XSS, clickjacking, and content-type protection  
+✅ **Route Protection**: API routes require authentication
+✅ **Automatic Redirect**: Unauthenticated users redirect to login
+✅ **Multi-tenant Support**: Works with any Microsoft account
+✅ **Secure Headers**: XSS, clickjacking, and content-type protection
 
 ## Troubleshooting
 
