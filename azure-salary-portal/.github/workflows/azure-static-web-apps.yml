@@ -39,8 +39,12 @@ jobs:
         run: |
           echo "Repository structure:"
           ls -la
-          echo "Checking for index.html:"
-          ls -la index.html || echo "index.html not found"
+          echo "Checking for root index.html:"
+          ls -la index.html || echo "root index.html not found"
+          echo "Checking for app/index.html:"
+          ls -la app/index.html || echo "app/index.html not found"
+          echo "App directory content:"
+          ls -la app/ || echo "app directory not found"
 
       - name: Build And Deploy
         id: builddeploy
@@ -49,7 +53,7 @@ jobs:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
-          app_location: "/"
+          app_location: "/app"
           api_location: "backend"
           output_location: ""
           skip_app_build: true

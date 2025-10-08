@@ -1,0 +1,27 @@
+{
+  "routes": [
+    {
+      "route": "/api/test",
+      "allowedRoles": ["anonymous"]
+    },
+    {
+      "route": "/api/health",
+      "allowedRoles": ["anonymous"]
+    },
+    {
+      "route": "/api/ping",
+      "allowedRoles": ["anonymous"]
+    },
+    {
+      "route": "/api/*",
+      "allowedRoles": ["authenticated"]
+    },
+    {
+      "route": "/*",
+      "rewrite": "/index.html"
+    }
+  ],
+  "navigationFallback": {
+    "rewrite": "/index.html"
+  }
+}
