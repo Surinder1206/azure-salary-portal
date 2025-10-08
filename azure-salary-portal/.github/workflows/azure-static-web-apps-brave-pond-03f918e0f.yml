@@ -38,6 +38,15 @@ jobs:
           echo "=== ALL HTML FILES ==="
           find . -name "*.html" -type f | head -20
 
+      - name: Debug Secrets
+        run: |
+          echo "=== SECRET DEBUG ==="
+          if [ -n "${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}" ]; then
+            echo "✅ AZURE_STATIC_WEB_APPS_API_TOKEN is set (length: ${#GITHUB_TOKEN})"
+          else
+            echo "❌ AZURE_STATIC_WEB_APPS_API_TOKEN is NOT set"
+          fi
+
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
@@ -55,6 +64,7 @@ jobs:
           app_location: "/" # App source code path
           api_location: "backend" # Api source code path - optional
           output_location: "" # Built app content directory - optional
+          skip_deploy_on_missing_secrets: false
           ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:
