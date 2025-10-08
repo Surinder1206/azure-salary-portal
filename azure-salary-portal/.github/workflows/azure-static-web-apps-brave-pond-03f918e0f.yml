@@ -20,6 +20,24 @@ jobs:
           submodules: true
           lfs: false
 
+      - name: Debug Repository Contents
+        run: |
+          echo "=== WORKSPACE DEBUG ==="
+          pwd
+          echo "=== ROOT FILES ==="
+          ls -la
+          echo "=== INDEX.HTML CHECK ==="
+          if [ -f "index.html" ]; then
+            echo "✅ index.html EXISTS"
+            echo "File size: $(stat -c%s index.html) bytes"
+            echo "File contents:"
+            cat index.html
+          else
+            echo "❌ index.html MISSING"
+          fi
+          echo "=== ALL HTML FILES ==="
+          find . -name "*.html" -type f | head -20
+
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
